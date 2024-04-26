@@ -1,3 +1,4 @@
+import 'package:chat_app/auth/auth_service.dart';
 import 'package:flutter/material.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_textfield.dart';
@@ -12,8 +13,28 @@ class RegisterPage extends StatelessWidget {
 
   RegisterPage({super.key, required this.togglePage});
 
-  void registerMethod() {
-    print('tap on register button');
+  void registerMethod(BuildContext context) {
+    final _auth = AuthService();
+
+    if (_passwordController.text == _confirmPasswordController.text) {
+      try {
+        _auth.signUp(_emailController.text, _confirmPasswordController.text);
+      } catch (e) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text(e.toString()),
+          ),
+        );
+      }
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Password dont match'),
+        ),
+      );
+    }
   }
 
   @override
@@ -78,7 +99,7 @@ class RegisterPage extends StatelessWidget {
             // login button
             CustomButton(
               text: 'Register',
-              onTap: registerMethod,
+              onTap: () => registerMethod(context),
             ),
 
             SizedBox(height: 20),

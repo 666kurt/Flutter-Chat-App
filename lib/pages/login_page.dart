@@ -82,7 +82,7 @@ class LoginPage extends StatelessWidget {
             // login button
             CustomButton(
               text: 'Login',
-              onTap: () => loginMethod,
+              onTap: () => loginMethod(context),
             ),
 
             SizedBox(height: 20),
