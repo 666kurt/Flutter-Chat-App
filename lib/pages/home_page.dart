@@ -2,6 +2,7 @@ import 'package:chat_app/service/auth/auth_service.dart';
 import 'package:chat_app/service/chat/chat_service.dart';
 import 'package:flutter/material.dart';
 import '../widgets/custom_drawer.dart';
+import '../widgets/user_tile.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -34,14 +35,18 @@ class HomePage extends StatelessWidget {
         }
 
         return ListView(
-          children:
-              snapshot.data!.map<Widget>((userData) => _buildUserItem).toList(),
+          children: snapshot.data!
+              .map<Widget>((userData) => _buildUserItem(userData, context))
+              .toList(),
         );
       },
     );
   }
 
   Widget _buildUserItem(Map<String, dynamic> userData, BuildContext context) {
-    return ListTile();
+    return UserTile(
+      text: userData['email'],
+      onTap: () {},
+    );
   }
 }
