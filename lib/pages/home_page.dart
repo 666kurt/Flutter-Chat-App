@@ -1,3 +1,4 @@
+import 'package:chat_app/pages/chat_page.dart';
 import 'package:chat_app/service/auth/auth_service.dart';
 import 'package:chat_app/service/chat/chat_service.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +47,17 @@ class HomePage extends StatelessWidget {
   Widget _buildUserItem(Map<String, dynamic> userData, BuildContext context) {
     return UserTile(
       text: userData['email'],
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ChatPage(
+              receiverEmail: userData['email'],
+              receiverID: userData['uid'],
+            ),
+          ),
+        );
+      },
     );
   }
 }
