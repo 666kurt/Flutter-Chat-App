@@ -21,7 +21,7 @@ class CustomDrawer extends StatelessWidget {
           DrawerHeader(
             child: Icon(
               Icons.message,
-              color: Theme.of(context).colorScheme.primary,
+              color: Theme.of(context).colorScheme.inversePrimary,
               size: 44,
             ),
           ),
@@ -30,8 +30,17 @@ class CustomDrawer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 20, top: 20),
             child: ListTile(
-              leading: Icon(Icons.home),
-              title: Text("Home".toUpperCase()),
+              leading: Icon(
+                Icons.home,
+                color: Theme.of(context).colorScheme.inversePrimary,
+              ),
+              title: Text(
+                "Home".toUpperCase(),
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.inversePrimary,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               onTap: () {
                 Navigator.pop(context);
               },
@@ -42,8 +51,17 @@ class CustomDrawer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: ListTile(
-              leading: Icon(Icons.settings),
-              title: Text("Settings".toUpperCase()),
+              leading: Icon(
+                Icons.settings,
+                color: Theme.of(context).colorScheme.inversePrimary,
+              ),
+              title: Text(
+                "Settings".toUpperCase(),
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.inversePrimary,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               onTap: () {
                 Navigator.pop(context);
                 Navigator.push(
@@ -60,8 +78,17 @@ class CustomDrawer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: ListTile(
-              leading: Icon(Icons.logout),
-              title: Text("Logout".toUpperCase()),
+              leading: Icon(
+                Icons.logout,
+                color: Theme.of(context).colorScheme.inversePrimary,
+              ),
+              title: Text(
+                "Logout".toUpperCase(),
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.inversePrimary,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               onTap: logOut,
             ),
           )

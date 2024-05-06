@@ -18,11 +18,20 @@ class UserTile extends StatelessWidget {
         padding: EdgeInsets.all(20),
         child: Row(
           children: [
-            Icon(Icons.person),
+            Icon(
+              Icons.person,
+              color: Theme.of(context).colorScheme.inversePrimary,
+            ),
             SizedBox(
               width: 10,
             ),
-            Text(text),
+            Text(
+              text,
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.inversePrimary,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ],
         ),
       ),

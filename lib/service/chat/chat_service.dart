@@ -33,7 +33,9 @@ class ChatService {
     );
 
     // create chat room
-    String chatRoomID = currentID + "_" + receiverID;
+    List<String> ids = [currentID, receiverID];
+    ids.sort();
+    String chatRoomID = ids.join("_");
 
     await _firestore
         .collection("chat_rooms")
@@ -44,7 +46,9 @@ class ChatService {
 
   // get message
   Stream<QuerySnapshot> getMessage(String currentID, String receiverID) {
-    String chatRoomID = currentID + "_" + receiverID;
+    List<String> ids = [currentID, receiverID];
+    ids.sort();
+    String chatRoomID = ids.join("_");
 
     return _firestore
         .collection("chat_rooms")

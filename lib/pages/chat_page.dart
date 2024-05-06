@@ -1,5 +1,6 @@
 import 'package:chat_app/service/auth/auth_service.dart';
 import 'package:chat_app/service/chat/chat_service.dart';
+import 'package:chat_app/widgets/chat_bubble.dart';
 import 'package:chat_app/widgets/custom_textfield.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +30,8 @@ class ChatPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(receiverEmail),
+        backgroundColor: Colors.transparent,
+        foregroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: Column(
         children: [
@@ -75,27 +78,43 @@ class ChatPage extends StatelessWidget {
         crossAxisAlignment:
             isCurrentUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
-          Text(data["message"]),
+          ChatBubble(isCurrentUser: isCurrentUser, message: data["message"])
         ],
       ),
     );
   }
 
   Widget _buildTextField() {
-    return Row(
-      children: [
-        Expanded(
-          child: CustomTextField(
-            hintText: "Enter a message",
-            isHidden: false,
-            controller: _controller,
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 30, horizontal: 10),
+      child: Row(
+        children: [
+          Expanded(
+            child: CustomTextField(
+              hintText: "Enter a message",
+              isHidden: false,
+              controller: _controller,
+            ),
           ),
-        ),
-        ElevatedButton(
-          onPressed: sendMessage,
-          child: Icon(Icons.send),
-        )
-      ],
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.blue,
+              shape: BoxShape.circle,
+            ),
+            margin: EdgeInsets.only(right: 10),
+            child: Container(
+              padding: EdgeInsets.all(5),
+              child: IconButton(
+                onPressed: sendMessage,
+                icon: Icon(
+                  Icons.send,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
